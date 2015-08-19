@@ -11,12 +11,71 @@ a {
 .navbar {
  background-color: rgba(0,0,0,0.8);
  color: blue;
+ text-align: left;
+}
+
+.navbar-brand {
+font-family: 'Pacifico', cursive;
+color: white;
+padding-left: 0px;
+margin-left: 0px;
+font-size: 30px;
+}
+
+.navbar-brand:hover {
+	color: red;
 }
 
 #map-canvas {
-	margin-top: 50px;
+	position: absolute;
+	/*margin-top: 50px;*/
 	height: 100vh;
 	width: 100%;
+	z-index: 0;
 
 }
 
+
+
+
+#content-boxes {
+	position: relative;
+	z-index: 1;
+	margin: 0px;
+	background-color: rgba(0, 0, 0, 0.8);
+
+}
+#content-boxes div{
+	color: white;
+	position: relative;
+	z-index: 1;
+	margin: 0px;
+	display: inline;
+	background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+#selectors{
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    margin-top: 300px;
+    /*margin: 300px auto 0;*/
+    padding: 10px;
+    /*height: auto;*/
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#selectors div{
+	margin: 0 auto;
+    list-style-type: none;
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+}
+
+select{
+    display: inline;
+    width: 300px;
+}
