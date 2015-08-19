@@ -1,21 +1,42 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h3>Pages</h3>
+  <h3></h3>
   <hr>
 
-  {% if pages.length > 0 %}
-  <ul>
-    {% for page in pages %}
-      <li>{{ page | pageLink }}</li>
+  {% if all_hotels.length > 0 %}
+  <select class='hotel-list'>
+    {% for hotel in all_hotels %}
+      <option value="{{hotel.name}}">{{ hotel.name  }}</option>
       <!-- <li>{{ page.author }}</li> -->
-
     {% endfor %}
-  </ul>
   {% else %}
     There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
   {% endif %}
+  </select>
 
+
+  {% if all_restaurants.length > 0 %}
+  <select class='hotel-list'>
+    {% for rest in all_restaurants %}
+      <option value="{{rest.name}}">{{ rest.name  }}</option>
+      <!-- <li>{{ page.author }}</li> -->
+    {% endfor %}
+  {% else %}
+    There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+  {% endif %}
+  </select>
+
+    {% if all_activities.length > 0 %}
+  <select class='hotel-list'>
+    {% for act in all_activities %}
+      <option value="{{act.name}}">{{ act.name  }}</option>
+      <!-- <li>{{ page.author }}</li> -->
+    {% endfor %}
+  {% else %}
+    There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+  {% endif %}
+  </select>
 
 
 {% endblock %}

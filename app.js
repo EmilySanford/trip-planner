@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var sass = require('node-sass-middleware');
 
-require('./models');
+var Hotel = require('./models').Hotel;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', routes);
 app.use('/users', users);
