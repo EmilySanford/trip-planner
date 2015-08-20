@@ -40,9 +40,13 @@
    </div>
    <div id="footer" class="container text-muted">
      Trip-Planner by Emily & Dan
-   </div>    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   </div>   
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbcRKsCgmunrvEWPjMr4DxnKWAS2nWkz4&sensor=true"></script><script> function initialize_gmaps() {
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbcRKsCgmunrvEWPjMr4DxnKWAS2nWkz4&sensor=true"></script>
+
+ <script> function initialize_gmaps() {
    // initialize new google maps LatLng object
    var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
    // set the map options hash
@@ -51,7 +55,8 @@
        zoom: 16,
        mapTypeId: google.maps.MapTypeId.ROADMAP
    };
-   var labels = 'XXXXXXXXXXXXXXXXX';
+    var image = 'http://www180.lunapic.com/do-not-link-here-use-hosting-instead/144002284887590?5382432346'
+    var labels = 'BAT';
    var labelIndex = 0;
    // get the maps div's HTML obj
    var map_canvas_obj = document.getElementById("map-canvas");
@@ -61,21 +66,34 @@
    var marker = new google.maps.Marker({
        position: myLatlng,
        title:"Hello World!"
-   });    // Add the marker to the map by calling setMap()
+   });    
+   // Add the marker to the map by calling setMap()
    marker.setMap(map);
      // This event listener calls addMarker() when the map is clicked.
  google.maps.event.addListener(map, 'click', function(event) {
    addMarker(event.latLng, map);
- });  // Add a marker at the center of the map.
- addMarker(bangalore, map);  // Adds a marker to the map.
+ });  
+ // Add a marker at the center of the map.
+ addMarker(bangalore, map);  
+ // Adds a marker to the map.
+
 function addMarker(location, map) {
  // Add the marker at the clicked location, and add the next-available label
  // from the array of alphabetical characters.
  var marker = new google.maps.Marker({
-   position: location,
-   label: labels[labelIndex++ % labels.length],
-   map: map
+  position: location,
+  icon: image,
+  label: infowindow,
+  map: map
  });
+marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: "whaaaaaaat"
+  }); 
+
+ 
 }
 }
 $(document).ready(function() {
