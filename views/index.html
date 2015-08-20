@@ -1,42 +1,97 @@
-{% extends "layout.html" %}
-
-{% block content %}
-  <h3></h3>
-  <hr>
-
-  {% if all_hotels.length > 0 %}
-  <select class='hotel-list'>
-    {% for hotel in all_hotels %}
-      <option value="{{hotel.name}}">{{ hotel.name  }}</option>
-      <!-- <li>{{ page.author }}</li> -->
-    {% endfor %}
-  {% else %}
-    There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
-  {% endif %}
-  </select>
+{% extends "layout.html" %}<!-- {% block content %}
+ <h3></h3>
+ <hr>
+-->
+<div id="day">
+  <div class="arrow-left"></div>
+  <h1>&laquo Day 2 &raquo</h1>
+  <div class="arrow-right"></div>
+</div>
 
 
-  {% if all_restaurants.length > 0 %}
-  <select class='hotel-list'>
-    {% for rest in all_restaurants %}
-      <option value="{{rest.name}}">{{ rest.name  }}</option>
-      <!-- <li>{{ page.author }}</li> -->
-    {% endfor %}
-  {% else %}
-    There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
-  {% endif %}
-  </select>
+ <div id="selectors">
+{% if all_hotels.length > 0 %}
 
-    {% if all_activities.length > 0 %}
-  <select class='hotel-list'>
-    {% for act in all_activities %}
-      <option value="{{act.name}}">{{ act.name  }}</option>
-      <!-- <li>{{ page.author }}</li> -->
-    {% endfor %}
-  {% else %}
-    There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
-  {% endif %}
-  </select>
+<div>
+<select class='hotel-list'>
+   <option value="" disabled selected>Select Your Hotel</option>
+  {% for hotel in all_hotels %}
+    <option value="{{hotel.name}}">{{ hotel.name  }}</option>
+    <!-- <li>{{ page.author }}</li> -->
+  {% endfor %}
+{% else %}
+  There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+{% endif %}
+</select>
+
+</div>
+{% if all_restaurants.length > 0 %}
+
+<div>
+<select class='hotel-list'>
+  <option value="" disabled selected>Select Your Restaurants</option>
+  {% for rest in all_restaurants %}
+    <option value="{{rest.name}}">{{ rest.name  }}</option>
+    <!-- <li>{{ page.author }}</li> -->
+  {% endfor %}
+{% else %}
+  There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+{% endif %}
+</select>
+</div>
+
+  {% if all_activities.length > 0 %}
+
+<div>
+<select class='hotel-list'>
+  <option value="" disabled selected>Select Your Activities</option>
+  {% for act in all_activities %}
+    <option value="{{act.name}}">{{ act.name  }}</option>
+    <!-- <li>{{ page.author }}</li> -->
+  {% endfor %}
+{% else %}
+  There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+{% endif %}
+</select>
+</div>
+
+</div>
+<!-- end of selectors -->
+ <div id="content-boxes" class="row-fluid">
+       <div class="span4">
+       
+         <h2>Hotel</h2>
+
+         <div class="list-item">
+         <p class="list-item">Placeholder for hotel content </p>
+          <button type="button" class="btn btn-xs btn-danger">X</button> 
+          </div>
+
+         <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
 
 
-{% endblock %}
+       <div class="span4">
+         <h2>Restaraunt</h2>
+         <div class="list-item">
+         <p class="list-item">Placeholder for restaurant content</p>
+          <button type="button" class="btn btn-xs btn-danger">X</button> 
+        </div>
+         <p><a class="btn" href="#">View details &raquo;</a></p>
+      </div>
+
+       <div class="span4">
+         <h2>Activities</h2>
+         <div class="list-item">
+         <p class="list-item">placeholder for activity content</p>
+          <button type="button" class="btn btn-xs btn-danger">X</button> 
+        </div>
+         <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+      
+     </div>
+{% endblock %} 
+<div class="clear-floats"></div>
+
+
+

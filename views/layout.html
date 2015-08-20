@@ -1,70 +1,87 @@
 <!-- layout.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>{% block title %}Trip-Planner{% endblock %}</title>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/style.css" rel="stylesheet">
-  </head>
-  <body>
-    <div class="navbar navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Trip-Planner!</a>
-        </div>
-        <div id="nav-items" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div id='map-canvas'>Placeholder for map</div>
-    <div class="container content">
-      {% block content %}{% endblock %}
-    </div>
-    <div id="footer" class="container text-muted">
-      WIKISTACK by Fullstack Academy
-    </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbcRKsCgmunrvEWPjMr4DxnKWAS2nWkz4&sensor=true"></script>
+ <head>
+   <title>{% block title %}Trip-Planner{% endblock %}</title>
+   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/stylesheets/style.css" rel="stylesheet">
+   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
-<script> function initialize_gmaps() {
-    // initialize new google maps LatLng object
-    var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
-    // set the map options hash
-    var mapOptions = {
-        center: myLatlng,
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    // get the maps div's HTML obj
-    var map_canvas_obj = document.getElementById("map-canvas");
-    // initialize a new Google Map with the options
-    var map = new google.maps.Map(map_canvas_obj, mapOptions);
-    // Add the marker to the map
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title:"Hello World!"
-    });
-    // Add the marker to the map by calling setMap()
-    marker.setMap(map);
+
+
+ </head>
+ <body>
+   <div class="navbar navbar-fixed-top" role="navigation">
+     <!-- <div class="container"> -->
+       <div class="navbar-header pull-left">
+         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-items">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand "  href="/">Trip-Planner!</a>
+       </div>
+       <div id="nav-items" class="collapse navbar-collapse">
+         <ul class="nav navbar-nav">
+           <li><a href="/home">Home</a></li>
+           <li><a href="/about">About</a></li>
+           <li><a href="/contact">Contact</a></li>
+         </ul>
+       </div>
+     <!-- </div> -->
+   </div>
+   <div class='conatiner'>
+   <div id='map-canvas'></div>
+   </div>
+   <div class="container content">
+     {% block content %}{% endblock %}
+   </div>
+   <div id="footer" class="container text-muted">
+     Trip-Planner by Emily & Dan
+   </div>    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbcRKsCgmunrvEWPjMr4DxnKWAS2nWkz4&sensor=true"></script><script> function initialize_gmaps() {
+   // initialize new google maps LatLng object
+   var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
+   // set the map options hash
+   var mapOptions = {
+       center: myLatlng,
+       zoom: 16,
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+   };
+   var labels = 'XXXXXXXXXXXXXXXXX';
+   var labelIndex = 0;
+   // get the maps div's HTML obj
+   var map_canvas_obj = document.getElementById("map-canvas");
+   // initialize a new Google Map with the options
+   var map = new google.maps.Map(map_canvas_obj, mapOptions);
+   // Add the marker to the map
+   var marker = new google.maps.Marker({
+       position: myLatlng,
+       title:"Hello World!"
+   });    // Add the marker to the map by calling setMap()
+   marker.setMap(map);
+     // This event listener calls addMarker() when the map is clicked.
+ google.maps.event.addListener(map, 'click', function(event) {
+   addMarker(event.latLng, map);
+ });  // Add a marker at the center of the map.
+ addMarker(bangalore, map);  // Adds a marker to the map.
+function addMarker(location, map) {
+ // Add the marker at the clicked location, and add the next-available label
+ // from the array of alphabetical characters.
+ var marker = new google.maps.Marker({
+   position: location,
+   label: labels[labelIndex++ % labels.length],
+   map: map
+ });
 }
-
+}
 $(document).ready(function() {
-    initialize_gmaps();
+   initialize_gmaps();
 });
 </script>
-
-
-  </body>
-</html>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+ </body>
+</html> 
